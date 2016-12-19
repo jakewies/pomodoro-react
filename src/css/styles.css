@@ -1,0 +1,36 @@
+button {
+	border: none;
+	background-color: initial;
+	color: #3F51B5;
+	cursor: pointer;
+	width: 80px;
+	font-size: 0.95rem;
+	text-transform: uppercase;
+	padding: 8px;
+}
+
+button:focus {
+	outline: none;
+}
+
+button:hover {
+	background-color: #EEEEEE;
+}
+
+.timer {
+	width: 400px;
+	margin: 10% auto 0;
+	text-align: center;
+}
+
+.time {
+	font-size: 5rem;
+	font-weight: lighter;
+}
+
+.controls {
+	width: 200px;
+	margin: 15px auto 0;
+	display: flex;
+	justify-content: space-around;
+}

@@ -1,9 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
+import './css/styles.css';
+import Time from './components/Time';
+import Controls from './components/Controls';
+
+class Timer extends React.Component {
+	
+	render() {
+		return (
+			<div className='timer'>
+				<Time />
+				<Controls />
+			</div>
+		)
+	}
+}
 
 ReactDOM.render(
-  <App />,
-  document.getElementById('root')
+  <Timer />,
+  document.getElementById('app')
 );
