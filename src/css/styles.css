@@ -53,8 +53,20 @@ li {
 }
 
 .time {
-	font-size: 30rem;
+	font-size: 20rem;
 	font-weight: lighter;
+}
+
+@media (max-width: 800px) {
+	.time {
+		font-size: 10rem;
+	}
+}
+
+@media (max-width: 400px) {
+	.time {
+		font-size: 8rem;
+	}
 }
 
 .controls {
@@ -84,6 +96,26 @@ li {
 
 .rest {
 	background-color: lightcoral;
+}
+
+.info {
+	animation: pulse 1.33s infinite;
+}
+
+.info.hide {
+	display: none;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0;
+  }
+	50% {
+		opacity: 0.7;
+	}
+  100% {
+    opacity: 0;
+  }
 }
 
 #app {

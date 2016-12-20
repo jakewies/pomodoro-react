@@ -4,6 +4,7 @@ import './css/styles.css';
 import Time from './js/components/Time';
 import Info from './js/components/Info';
 // import Phases from './js/components/Phases';
+import Controls from './js/components/Controls';
 import { _25, _05, handleOnKeyDown, handleOnSpaceDown } from './js/helpers';
 import EventListener from 'react-event-listener';
 
@@ -95,7 +96,8 @@ class Timer extends React.Component {
 			<div className={`container ${this.state.phase}`} >
 				<div className='timer'>
 					<Time time={this.state.timeRemaining} />
-					<Info />
+					<Info interval={this.state.interval ? true : false}/>
+					<Controls handleOnClickStart={this.handleStartTimer} handleOnClickStop={this.handleStopTimer}/>
 				</div>
 				<EventListener target={window} onKeyDown={this.handleOnKeyDown} />
 			</div>
