@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/styles.css';
-import Time from './components/Time';
-import Controls from './components/Controls';
-import { _25 } from './js/helpers';
+import Time from './js/components/Time';
+import Controls from './js/components/Controls';
+import { _25, _test } from './js/helpers';
 
 class Timer extends React.Component {
 	constructor(props) {
@@ -11,7 +11,7 @@ class Timer extends React.Component {
 
 		this.state = {
 			interval: null,
-			timeRemaining: this.getTimeRemaining(_25)
+			timeRemaining: this.getTimeRemaining(_test)
 		}
 
 		this.handleStartTimer = this.handleStartTimer.bind(this);
@@ -46,12 +46,18 @@ class Timer extends React.Component {
 	}
 
 	displayTime() {
-		console.log('inside displayTime');
-		// get time remaining
-		let timeRemaining = this.getTimeRemaining(this.state.timeRemaining.total - 1000); // time Remaining - 1 second
+		if (this.state.timeRemaining.total > 0) {
+			console.log('inside displayTime');
+			// get time remaining
+			let timeRemaining = this.getTimeRemaining(this.state.timeRemaining.total - 1000); // time Remaining - 1 second
 
-		// set time remaining
-		this.setState({ timeRemaining });
+			// set time remaining
+			this.setState({ timeRemaining });
+		}
+		else {
+			this.handleStopTimer();
+		}
+
 	}
 
 	getTimeRemaining(time) {
