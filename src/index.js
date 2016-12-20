@@ -10,7 +10,6 @@ class Timer extends React.Component {
 		super(props);
 
 		this.state = {
-			isActive: false,
 			interval: null,
 			timeRemaining: this.getTimeRemaining(_25)
 		}
@@ -23,11 +22,9 @@ class Timer extends React.Component {
 	}
 
 	handleStartTimer() {
-		// is timer active?
 		if (!this.state.interval) {
 			console.log('starting...');
 
-			// show time
 			this.startTimer();
 		}
 	}
@@ -61,7 +58,7 @@ class Timer extends React.Component {
 		// return a string value of the time remaining
 		const total = time,
 					minutes = Math.floor( (total/1000/60) % 60 ),
-					seconds = Math.floor( (total/1000) % 60);
+					seconds = Math.floor( (total/1000) % 60) < 10 ? '0' + Math.floor( (total/1000) % 60 ) : Math.floor( (total/1000) % 60 );
 
 		return { total, minutes, seconds };
 	}
