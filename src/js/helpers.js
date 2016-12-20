@@ -6,6 +6,15 @@ export const _test = 15000;
 export function handleOnKeyDown(e) {
 	if (e.key === " ") {
 		e.preventDefault();
+		this.handleSpaceDown(); // method on Timer class in index.js
+	}
+}
+
+export function handleSpaceDown() {
+	// is timer running?
+	if (this.state.interval) {
 		this.handleStopTimer();
+	} else {
+		this.handleStartTimer();
 	}
 }

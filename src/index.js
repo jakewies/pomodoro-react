@@ -4,7 +4,7 @@ import './css/styles.css';
 import Time from './js/components/Time';
 import Controls from './js/components/Controls';
 import Phases from './js/components/Phases';
-import { _25, _05, _test, handleOnKeyDown } from './js/helpers';
+import { _25, _05, _test, handleOnKeyDown, handleSpaceDown } from './js/helpers';
 import EventListener from 'react-event-listener';
 
 class Timer extends React.Component {
@@ -25,6 +25,7 @@ class Timer extends React.Component {
 		this.getTimeRemaining = this.getTimeRemaining.bind(this);
 		this.nextPhase 				= this.nextPhase.bind(this);
 		this.handleOnKeyDown  = handleOnKeyDown.bind(this);
+		this.handleSpaceDown  = handleSpaceDown.bind(this);
 	}
 
 	handleStartTimer() {
