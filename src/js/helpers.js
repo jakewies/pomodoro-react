@@ -6,11 +6,11 @@ export const _test = 15000;
 export function handleOnKeyDown(e) {
 	if (e.key === " ") {
 		e.preventDefault();
-		this.handleSpaceDown(); // method on Timer class in index.js
+		this.handleOnSpaceDown(); // method on Timer class in index.js
 	}
 }
 
-export function handleSpaceDown() {
+export function handleOnSpaceDown() {
 	// is timer running?
 	if (this.state.interval) {
 		this.handleStopTimer();

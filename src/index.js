@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/styles.css';
 import Time from './js/components/Time';
-import Controls from './js/components/Controls';
-import Phases from './js/components/Phases';
-import { _25, _05, _test, handleOnKeyDown, handleSpaceDown } from './js/helpers';
+import Info from './js/components/Info';
+// import Phases from './js/components/Phases';
+import { _25, _05, _test, handleOnKeyDown, handleOnSpaceDown } from './js/helpers';
 import EventListener from 'react-event-listener';
 
 class Timer extends React.Component {
@@ -25,7 +25,7 @@ class Timer extends React.Component {
 		this.getTimeRemaining = this.getTimeRemaining.bind(this);
 		this.nextPhase 				= this.nextPhase.bind(this);
 		this.handleOnKeyDown  = handleOnKeyDown.bind(this);
-		this.handleSpaceDown  = handleSpaceDown.bind(this);
+		this.handleOnSpaceDown  = handleOnSpaceDown.bind(this);
 	}
 
 	handleStartTimer() {
@@ -95,12 +95,9 @@ class Timer extends React.Component {
 			<div className={`container ${this.state.phase}`} >
 				<div className='timer'>
 					<Time time={this.state.timeRemaining} />
-					<Controls handleStartTimer={this.handleStartTimer} handleStopTimer={this.handleStopTimer}/>
+					<Info />
 				</div>
-				<div className='phase-container'>
-					<Phases phase={this.state.phase}/>
-				</div>
-				<EventListener target={document} onKeyDown={this.handleOnKeyDown} />
+				<EventListener target={window} onKeyDown={this.handleOnKeyDown} />
 			</div>
 		)
 	}
