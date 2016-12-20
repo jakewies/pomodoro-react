@@ -3,90 +3,73 @@ import ReactDOM from 'react-dom';
 import './css/styles.css';
 import Time from './components/Time';
 import Controls from './components/Controls';
+import { _25 } from './js/helpers';
 
 class Timer extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
+
 		this.state = {
 			isActive: false,
-			currentTime: null,
-			endTime: null,
-			timeRemaining: null
+			interval: null,
+			timeRemaining: this.getTimeRemaining(_25)
 		}
 
 		this.handleStartTimer = this.handleStartTimer.bind(this);
+		this.handleStopTimer  = this.handleStopTimer.bind(this);
+		this.startTimer       = this.startTimer.bind(this);
+		this.displayTime      = this.displayTime.bind(this);
 		this.getTimeRemaining = this.getTimeRemaining.bind(this);
-		this.handleStopTimer = this.handleStopTimer.bind(this);
-		this.updateTimer = this.updateTimer.bind(this);
-		this.startTimer = this.startTimer.bind(this);
-		this._25 = 1500000; // 25 minutes in milliseconds
-		this._test = 15000;
 	}
 
 	handleStartTimer() {
-		if (!this.state.isActive) {
-			const now = this.state.currentTime === null ? Date.now() : this.state.currentTime; // get current time in milliseconds
+		// is timer active?
+		if (!this.state.interval) {
+			console.log('starting...');
 
-			if (!this.state.endTime) {
-				this.setState({
-					isActive: true,
-					currentTime: now,
-					endTime:  this.state.endTime ? this.state.endTime : now + this._25
-				});
-			} else {
-				this.setState({
-					currentTime: now,
-					isActive: true,
-				});
-			}
-			this.startTimer(); // start timer
+			// show time
+			this.startTimer();
 		}
 	}
 
 	handleStopTimer() {
-		console.log('stopping...');
-		this.setState({
-			isActive: false
-		});
+		if (this.state.interval) {
+			console.log('stopping...');
 
-	}
-
-	getTimeRemaining(now) {
-		// do Date stuff
-		const total   = this.state.endTime - now,
-					minutes = Math.floor( (total/1000/60) % 60 ),
-					seconds = Math.floor( (total/1000) % 60 );
-
-		return { total, minutes, seconds };
-	}
-
-	updateTimer() {
-		if (this.state.isActive) {
-			let now = this.state.currentTime; // get current time in milliseconds
-			const timeRemaining = this.getTimeRemaining(now);
-			this.setState({
-				currentTime: now += 1000,
-				timeRemaining: `${timeRemaining.minutes}:${timeRemaining.seconds}`
-			});
-			if (timeRemaining.total <= 0) {
-				clearInterval(this.initTimer);
-			}
-		} else {
-			clearInterval(this.initTimer); // timer is not active, pause timer
+			clearInterval(this.state.interval);
+			this.setState({ interval: null });
 		}
 	}
 
 	startTimer() {
-		console.log('starting...');
-		// run function every second
-		this.updateTimer(); // update timer first to avoid delay
-		const initTimer = setInterval( this.updateTimer, 1000 );
+		this.displayTime(); // display initial time without delay
+		this.setState({
+			interval: setInterval(this.displayTime, 1000) // run every second
+		});
+	}
+
+	displayTime() {
+		console.log('inside displayTime');
+		// get time remaining
+		let timeRemaining = this.getTimeRemaining(this.state.timeRemaining.total - 1000); // time Remaining - 1 second
+
+		// set time remaining
+		this.setState({ timeRemaining });
+	}
+
+	getTimeRemaining(time) {
+		// return a string value of the time remaining
+		const total = time,
+					minutes = Math.floor( (total/1000/60) % 60 ),
+					seconds = Math.floor( (total/1000) % 60);
+
+		return { total, minutes, seconds };
 	}
 
 	render() {
 		return (
 			<div className='timer'>
-				<Time timeRemaining={this.state.timeRemaining}/>
+				<Time time={this.state.timeRemaining} />
 				<Controls handleStartTimer={this.handleStartTimer} handleStopTimer={this.handleStopTimer}/>
 			</div>
 		)
