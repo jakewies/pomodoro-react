@@ -1,8 +1,10 @@
 import React from 'react';
 
-const Time = () => {
+const Time = (props) => {
 	return (
-		<span className='time'>25:00</span>
+		<span className='time'>
+			{ props.timeRemaining }
+		</span>
 	)
 }
 
