@@ -1,6 +1,7 @@
 /* RESET */
 html {
 	box-sizing: border-box;
+	font-family: 'Exo 2', sans-serif;
 }
 
 html, body {
@@ -15,6 +16,53 @@ html, body {
 	margin: 0;
 }
 
+h1 {
+	font-size: 9rem;
+	line-height: 1;
+	color: #f7fff7;
+	text-align: center;
+}
+
+h3 {
+	font-size: 4rem;
+	color: #f7fff7;
+	line-height: 1;
+	font-family: monospace;
+}
+
+p {
+	margin: 20px 0;
+	color: #EEEEEE;
+	font-size: 1.2rem;
+	font-family: monospace;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 2.5% 0;
+}
+
+li {
+	font-family: monospace;
+	color: #EEEEEE;
+	margin: 1% 0;
+}
+
+code {
+	background: lightgrey;
+	color: #333;
+	padding: 2px 4px;
+	border: 1px solid #333;
+	border-radius: 2px;
+	line-height: 2;
+}
+
+section {
+	max-width: 710px;
+	width: 90%;
+	margin: 50px auto 0;
+}
 
 button {
 	border: none;
@@ -27,17 +75,10 @@ button {
 	text-transform: uppercase;
 	padding: 8px;
 	letter-spacing: 2px;
-	font-family: 'Exo 2', sans-serif;
 }
 
 button:focus {
 	outline: none;
-}
-
-li {
-	display: inline;
-	margin: 0 50px;
-	font-size: 48px;
 }
 
 .container {
@@ -55,21 +96,7 @@ li {
 
 .time {
 	font-size: 20rem;
-	/*font-weight: 900;*/
-	font-family: 'Exo 2', sans-serif;
 	color: #000;
-}
-
-@media (max-width: 800px) {
-	.time {
-		font-size: 10rem;
-	}
-}
-
-@media (max-width: 400px) {
-	.time {
-		font-size: 8rem;
-	}
 }
 
 .controls {
@@ -117,26 +144,8 @@ li {
 	font-weight: lighter;
 }
 
-@media (max-width: 800px) {
-	.info {
-		font-size: 1.2rem;
-	}
-}
-
 .info.hide {
 	display: none;
-}
-
-@keyframes pulse {
-  0% {
-    opacity: 0;
-  }
-	50% {
-		opacity: 0.7;
-	}
-  100% {
-    opacity: 0;
-  }
 }
 
 /******************** NAVIGATION MENU ********************/
@@ -155,8 +164,8 @@ li {
 	transition: .4s;
 }
 .menu.transform {
-	width: 300vw;
-	height: 300vw;
+	width: 800vw;
+	height: 800vw;
 }
 
 .menu-burger {
@@ -177,6 +186,7 @@ li {
 
 .menu-items {
 	position: absolute;
+	padding: 0 20px;
 	width: 100%;
 	opacity: 0;
 	transition: .4s;
@@ -206,4 +216,79 @@ li {
 
 #app {
 	height: 100%;
+}
+
+/******************** MEDIA QUERIES ********************/
+@media (max-width: 800px) {
+	h1 {
+		font-size: 4.5rem;
+		text-align: left;
+	}
+
+	h3 {
+		font-size: 2.7rem;
+	}
+
+	.menu {
+		left: 40px;
+		top: 40px;
+	}
+
+	.menu-burger {
+		left: 15px;
+		top: 15px;
+	}
+
+	.time {
+		font-size: 10rem;
+	}
+	.info {
+		font-size: 1.2rem;
+	}
+}
+
+@media (max-width: 400px) {
+	h1 {
+		font-size: 3.5rem;
+  }
+
+	h3 {
+		font-size: 1.7rem;
+	}
+
+	.menu {
+		left: 30px;
+		top: 30px;
+		width: 35px;
+		height: 35px;
+	}
+
+	.menu-burger {
+		width: 35px;
+		height: 35px;
+		left: 12px;
+		top: 8px;
+		font-size: 24px;
+	}
+
+	.menu-items {
+		padding: 0 10px;
+	}
+
+	.time {
+		font-size: 8rem;
+	}
+}
+
+/******************** ANIMATIONS ********************/
+@keyframes pulse {
+  0% {
+    opacity: 0;
+  }
+	50% {
+		opacity: 0.7;
+	}
+  100% {
+    opacity: 0;
+  }
 }
