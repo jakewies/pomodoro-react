@@ -102,7 +102,7 @@ button:focus {
 }
 
 .time {
-	font-size: 22rem;
+	font-size: 20rem;
 	color: #000;
 }
 
@@ -263,7 +263,7 @@ button:focus {
 	}
 
 	.time {
-		font-size: 12rem;
+		font-size: 10rem;
 	}
 	.info {
 		font-size: 1.2rem;
@@ -292,7 +292,7 @@ button:focus {
 	}
 
 	.time {
-		font-size: 10rem;
+		font-size: 8rem;
 	}
 }
 

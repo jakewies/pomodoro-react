@@ -2,8 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/styles.css';
 import Time from './js/components/Time';
-// import Info from './js/components/Info';
-// import Phases from './js/components/Phases';
 import Controls from './js/components/Controls';
 import Navigation from './js/components/Navigation';
 import { _25, _05, _test, handleOnKeyDown, handleOnSpaceDown } from './js/helpers';
@@ -18,7 +16,7 @@ class Timer extends React.Component {
 			interval: null,
 		  step: 0,
 			phase: '',
-			timeRemaining: this.getTimeRemaining(65000)
+			timeRemaining: this.getTimeRemaining(_25)
 		}
 
 		this.handleStartTimer	 = this.handleStartTimer.bind(this);
