@@ -1,7 +1,7 @@
 /* RESET */
 html {
 	box-sizing: border-box;
-	font-family: 'Exo 2', sans-serif;
+	font-family: 'Josefin Sans', sans-serif;
 }
 
 html, body {
@@ -16,23 +16,24 @@ html, body {
 	margin: 0;
 }
 
-h1 {
-	font-size: 9rem;
+h1, h3 {
+	font-weight: lighter;
 	line-height: 1;
 	color: #f7fff7;
+}
+h1 {
+	font-size: 8.4rem;
 	text-align: center;
 }
 
 h3 {
 	font-size: 4rem;
-	color: #f7fff7;
-	line-height: 1;
-	font-family: monospace;
+	padding-left: 10px;
 }
 
 p {
 	margin: 20px 0;
-	color: #EEEEEE;
+	color: #f7fff7;
 	font-size: 1.2rem;
 	font-family: monospace;
 }
@@ -47,6 +48,12 @@ li {
 	font-family: monospace;
 	color: #EEEEEE;
 	margin: 1% 0;
+}
+
+img {
+	display: block;
+	width: 150px;
+	margin: 0 auto 30px;
 }
 
 code {
@@ -69,12 +76,12 @@ button {
 	background: transparent;
 	color: #000;
 	cursor: pointer;
-	font-size: 2rem;
-	font-weight: lighter;
+	font-size: 3rem;
 	text-transform: uppercase;
 	padding: 8px;
 	letter-spacing: 2px;
 	font-family: inherit;
+	font-weight: 700;
 }
 
 button:focus {
@@ -95,13 +102,13 @@ button:focus {
 }
 
 .time {
-	font-size: 18rem;
+	font-size: 22rem;
 	color: #000;
 }
 
 .controls {
-	width: 300px;
-	margin: 15px auto 0;
+	width: 400px;
+	margin: 30px auto 0;
 	display: flex;
 	justify-content: space-between;
 }
@@ -159,7 +166,7 @@ button:focus {
 	border-radius: 100%;
 	left: 50px;
 	top: 50px;
-	background-color: #2979FF;
+	background-color: #08090A;
 	transform: translate3d(-50%,-50%, 0);
 	transform-origin: center;
 	transition: .3s;
@@ -197,7 +204,7 @@ button:focus {
 .menu-items.transform {
 	transform: translateY(0);
 	opacity: 1;
-	margin-top: 100px;
+	margin-top: 10px;
 }
 
 .menu-items div {
@@ -223,12 +230,20 @@ button:focus {
 /******************** MEDIA QUERIES ********************/
 @media (max-width: 800px) {
 	h1 {
-		font-size: 4.5rem;
-		text-align: left;
+		font-size: 3.9rem;
 	}
 
 	h3 {
-		font-size: 2.7rem;
+		font-size: 2.2rem;
+	}
+
+	img {
+		width: 100px;
+	}
+
+	button {
+		font-size: 2rem;
+		width: 300px;
 	}
 
 	.menu {
@@ -248,7 +263,7 @@ button:focus {
 	}
 
 	.time {
-		font-size: 9rem;
+		font-size: 12rem;
 	}
 	.info {
 		font-size: 1.2rem;
@@ -257,11 +272,19 @@ button:focus {
 
 @media (max-width: 400px) {
 	h1 {
-		font-size: 3.5rem;
+		font-size: 3.2rem;
   }
 
-	h3 {
-		font-size: 1.7rem;
+	img {
+		width: 75px;
+	}
+
+	button {
+		font-size: 1.3rem;
+	}
+
+	.controls {
+		width: 300px;
 	}
 
 	.menu-items {
@@ -269,7 +292,7 @@ button:focus {
 	}
 
 	.time {
-		font-size: 7rem;
+		font-size: 10rem;
 	}
 }
 

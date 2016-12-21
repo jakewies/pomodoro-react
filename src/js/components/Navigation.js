@@ -1,5 +1,6 @@
 import React from 'react';
 import { handleMenuTransform } from '../helpers';
+import logo from '../../img/pomodoro.png';
 
 class Navigation extends React.Component {
 	render() {
@@ -9,6 +10,7 @@ class Navigation extends React.Component {
 				<div className='menu-burger' onClick={handleMenuTransform}>☰</div>
 				<div className='menu-items'>
 					<header>
+						<img src={logo} alt="The Pomodoro" />
    					<h1>The Pomodoro</h1>
 					</header>
 					<section>
