@@ -97,7 +97,6 @@ button:focus {
 .time {
 	font-size: 18rem;
 	color: #000;
-	animation: pulse 2s infinite;
 }
 
 .controls {

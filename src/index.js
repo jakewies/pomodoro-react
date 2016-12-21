@@ -6,8 +6,9 @@ import Time from './js/components/Time';
 // import Phases from './js/components/Phases';
 import Controls from './js/components/Controls';
 import Navigation from './js/components/Navigation';
-import { _25, _05, handleOnKeyDown, handleOnSpaceDown } from './js/helpers';
+import { _25, _05, _test, handleOnKeyDown, handleOnSpaceDown } from './js/helpers';
 import EventListener from 'react-event-listener';
+import Push from 'push.js';
 
 class Timer extends React.Component {
 	constructor(props) {
@@ -17,17 +18,18 @@ class Timer extends React.Component {
 			interval: null,
 		  step: 0,
 			phase: '',
-			timeRemaining: this.getTimeRemaining(_25)
+			timeRemaining: this.getTimeRemaining(65000)
 		}
 
-		this.handleStartTimer	= this.handleStartTimer.bind(this);
-		this.handleStopTimer  = this.handleStopTimer.bind(this);
-		this.startTimer      	= this.startTimer.bind(this);
-		this.displayTime      = this.displayTime.bind(this);
-		this.getTimeRemaining = this.getTimeRemaining.bind(this);
-		this.nextPhase 				= this.nextPhase.bind(this);
-		this.handleOnKeyDown  = handleOnKeyDown.bind(this);
-		this.handleOnSpaceDown  = handleOnSpaceDown.bind(this);
+		this.handleStartTimer	 = this.handleStartTimer.bind(this);
+		this.handleStopTimer   = this.handleStopTimer.bind(this);
+		this.startTimer      	 = this.startTimer.bind(this);
+		this.displayTime       = this.displayTime.bind(this);
+		this.getTimeRemaining  = this.getTimeRemaining.bind(this);
+		this.nextPhase 				 = this.nextPhase.bind(this);
+		this.handlePushNotif   = this.handlePushNotif.bind(this);
+		this.handleOnKeyDown   = handleOnKeyDown.bind(this);
+		this.handleOnSpaceDown = handleOnSpaceDown.bind(this);
 	}
 
 	handleStartTimer() {
@@ -65,6 +67,12 @@ class Timer extends React.Component {
 			/* get & set time remaining every 1 second */
 			let timeRemaining = this.getTimeRemaining(this.state.timeRemaining.total - 1000);
 			this.setState({ timeRemaining });
+
+			/* display notif if there is 1 minute left */
+			if (timeRemaining.total === 60000) {
+				let string = `1 minute of ${this.state.phase === "active" ? 'work' : 'rest'} remaining!`;
+				this.handlePushNotif(string);
+			}
 		}
 		else {
 			this.nextPhase(); // move to next phase
@@ -89,6 +97,13 @@ class Timer extends React.Component {
 		this.setState({
 			step,
 			timeRemaining: step % 2 === 0 ? this.getTimeRemaining(_25) : this.getTimeRemaining(_05)
+		});
+	}
+
+	handlePushNotif(string) {
+		Push.create('The Pomodoro', {
+			body: string,
+			timeout: 5000
 		});
 	}
 
