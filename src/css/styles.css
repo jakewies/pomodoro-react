@@ -69,12 +69,12 @@ button {
 	background: transparent;
 	color: #000;
 	cursor: pointer;
-	width: 100px;
 	font-size: 2rem;
 	font-weight: lighter;
 	text-transform: uppercase;
 	padding: 8px;
 	letter-spacing: 2px;
+	font-family: inherit;
 }
 
 button:focus {
@@ -95,12 +95,13 @@ button:focus {
 }
 
 .time {
-	font-size: 20rem;
+	font-size: 18rem;
 	color: #000;
+	animation: pulse 2s infinite;
 }
 
 .controls {
-	width: 275px;
+	width: 300px;
 	margin: 15px auto 0;
 	display: flex;
 	justify-content: space-between;
@@ -116,7 +117,7 @@ button:focus {
 	color: #EEEEEE;
 }
 
-/******************** NAVIGATION MENU ********************/
+/******************** STATE ********************/
 .active {
 	background-color: #00E676;
 }
@@ -127,6 +128,7 @@ button:focus {
 
 .rest .time, .active .time {
 	color: #f7fff7;
+	animation: none;
 }
 
 .rest button, .active button {
@@ -230,17 +232,23 @@ button:focus {
 	}
 
 	.menu {
-		left: 40px;
-		top: 40px;
+		left: 30px;
+		top: 30px;
+		width: 35px;
+		height: 35px;
 	}
 
 	.menu-burger {
-		left: 15px;
-		top: 15px;
+		width: 35px;
+		height: 35px;
+		left: 12px;
+		top: 17px;
+		padding: 0;
+		font-size: 18px;
 	}
 
 	.time {
-		font-size: 10rem;
+		font-size: 9rem;
 	}
 	.info {
 		font-size: 1.2rem;
@@ -256,27 +264,12 @@ button:focus {
 		font-size: 1.7rem;
 	}
 
-	.menu {
-		left: 30px;
-		top: 30px;
-		width: 35px;
-		height: 35px;
-	}
-
-	.menu-burger {
-		width: 35px;
-		height: 35px;
-		left: 12px;
-		top: 8px;
-		font-size: 24px;
-	}
-
 	.menu-items {
 		padding: 0 10px;
 	}
 
 	.time {
-		font-size: 8rem;
+		font-size: 7rem;
 	}
 }
 
@@ -286,7 +279,7 @@ button:focus {
     opacity: 0;
   }
 	50% {
-		opacity: 0.7;
+		opacity: 0.8;
 	}
   100% {
     opacity: 0;
