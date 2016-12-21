@@ -18,7 +18,7 @@ class Timer extends React.Component {
 			interval: null,
 		  step: 0,
 			phase: '',
-			timeRemaining: this.getTimeRemaining(65000)
+			timeRemaining: this.getTimeRemaining(_25)
 		}
 
 		this.handleStartTimer	 = this.handleStartTimer.bind(this);

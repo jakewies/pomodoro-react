@@ -162,7 +162,7 @@ button:focus {
 	background-color: #2979FF;
 	transform: translate3d(-50%,-50%, 0);
 	transform-origin: center;
-	transition: .4s;
+	transition: .3s;
 }
 .menu.transform {
 	width: 800vw;
@@ -183,6 +183,7 @@ button:focus {
 	cursor: pointer;
 	transition: .3s;
   transform-origin: center;
+	z-index: 1;
 }
 
 .menu-items {
@@ -190,7 +191,7 @@ button:focus {
 	padding: 0 20px;
 	width: 100%;
 	opacity: 0;
-	transition: .4s;
+	transition: .3s;
 	transform: translateY(-200%);
 }
 .menu-items.transform {
