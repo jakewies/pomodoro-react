@@ -18,7 +18,7 @@ class Timer extends React.Component {
 			interval: null,
 		  step: 0,
 			phase: '',
-			timeRemaining: this.getTimeRemaining(_25)
+			timeRemaining: this.getTimeRemaining(65000)
 		}
 
 		this.handleStartTimer	 = this.handleStartTimer.bind(this);
@@ -92,8 +92,13 @@ class Timer extends React.Component {
 	nextPhase() {
 		console.log('switching to next phase...');
 
+		/* alert user */
+		let string = `Time's Up! ${this.state.phase === "active" ? 'Getchu some rest!' : 'Ready to get to work?'}`;
+		this.handlePushNotif(string);
+
 		this.handleStopTimer();
 		let step = this.state.step + 1;
+
 		this.setState({
 			step,
 			timeRemaining: step % 2 === 0 ? this.getTimeRemaining(_25) : this.getTimeRemaining(_05)
@@ -103,6 +108,9 @@ class Timer extends React.Component {
 	handlePushNotif(string) {
 		Push.create('The Pomodoro', {
 			body: string,
+			icon: {
+        x32: './favicon.ico'
+    	},
 			timeout: 5000
 		});
 	}
