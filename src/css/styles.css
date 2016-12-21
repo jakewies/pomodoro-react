@@ -18,21 +18,20 @@ html, body {
 
 button {
 	border: none;
-	background-color: initial;
-	color: #3F51B5;
+	background: transparent;
+	color: #f7fff7;
 	cursor: pointer;
-	width: 80px;
-	font-size: 0.95rem;
+	width: 100px;
+	font-size: 2rem;
+	font-weight: lighter;
 	text-transform: uppercase;
 	padding: 8px;
+	letter-spacing: 2px;
+	font-family: 'Exo 2', sans-serif;
 }
 
 button:focus {
 	outline: none;
-}
-
-button:hover {
-	background-color: #EEEEEE;
 }
 
 li {
@@ -43,6 +42,7 @@ li {
 
 .container {
 	height: 100%;
+	background-color: #2196F3;
 }
 
 .timer {
@@ -54,7 +54,9 @@ li {
 
 .time {
 	font-size: 20rem;
-	font-weight: lighter;
+	/*font-weight: 900;*/
+	font-family: 'Exo 2', sans-serif;
+	color: #f7fff7;
 }
 
 @media (max-width: 800px) {
@@ -70,10 +72,10 @@ li {
 }
 
 .controls {
-	width: 200px;
+	width: 275px;
 	margin: 15px auto 0;
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 }
 
 .phases {
@@ -91,15 +93,24 @@ li {
 }
 
 .active {
-	background-color: lightgreen;
+	background-color: #00E676;
 }
 
 .rest {
-	background-color: lightcoral;
+	background-color: #FF5252;
 }
 
 .info {
 	animation: pulse 1.33s infinite;
+	color: #f7fff7;
+	font-size: 1.5rem;
+	font-weight: lighter;
+}
+
+@media (max-width: 800px) {
+	.info {
+		font-size: 1.2rem;
+	}
 }
 
 .info.hide {

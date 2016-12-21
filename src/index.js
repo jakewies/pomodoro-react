@@ -5,6 +5,7 @@ import Time from './js/components/Time';
 import Info from './js/components/Info';
 // import Phases from './js/components/Phases';
 import Controls from './js/components/Controls';
+import Navigation from './js/components/Navigation';
 import { _25, _05, handleOnKeyDown, handleOnSpaceDown } from './js/helpers';
 import EventListener from 'react-event-listener';
 
@@ -94,6 +95,7 @@ class Timer extends React.Component {
 	render() {
 		return (
 			<div className={`container ${this.state.phase}`} >
+				<Navigation />
 				<div className='timer'>
 					<Time time={this.state.timeRemaining} />
 					<Info interval={this.state.interval ? true : false}/>
