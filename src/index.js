@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/styles.css';
 import Time from './js/components/Time';
-import Info from './js/components/Info';
+// import Info from './js/components/Info';
 // import Phases from './js/components/Phases';
 import Controls from './js/components/Controls';
 import Navigation from './js/components/Navigation';
-import { _25, _05, handleOnKeyDown, handleOnSpaceDown } from './js/helpers';
+import { _25, _05, _test, handleOnKeyDown, handleOnSpaceDown } from './js/helpers';
 import EventListener from 'react-event-listener';
 
 class Timer extends React.Component {
@@ -17,7 +17,7 @@ class Timer extends React.Component {
 			interval: null,
 		  step: 0,
 			phase: '',
-			timeRemaining: this.getTimeRemaining(_25)
+			timeRemaining: this.getTimeRemaining(_test)
 		}
 
 		this.handleStartTimer	= this.handleStartTimer.bind(this);
@@ -98,7 +98,6 @@ class Timer extends React.Component {
 				<Navigation />
 				<div className='timer'>
 					<Time time={this.state.timeRemaining} />
-					<Info interval={this.state.interval ? true : false}/>
 					<Controls handleOnClickStart={this.handleStartTimer} handleOnClickStop={this.handleStopTimer}/>
 				</div>
 				<EventListener target={window} onKeyDown={this.handleOnKeyDown} />

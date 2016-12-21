@@ -19,7 +19,7 @@ html, body {
 button {
 	border: none;
 	background: transparent;
-	color: #f7fff7;
+	color: #000;
 	cursor: pointer;
 	width: 100px;
 	font-size: 2rem;
@@ -42,12 +42,13 @@ li {
 
 .container {
 	height: 100%;
-	background-color: #2196F3;
+	display: flex;
 }
 
 .timer {
 	display: flex;
 	flex-direction: column;
+	justify-content: space-around;
 	align-items: center;
 	margin: 0 auto 0;
 }
@@ -56,7 +57,7 @@ li {
 	font-size: 20rem;
 	/*font-weight: 900;*/
 	font-family: 'Exo 2', sans-serif;
-	color: #f7fff7;
+	color: #000;
 }
 
 @media (max-width: 800px) {
@@ -88,16 +89,25 @@ li {
 	color: #EEEEEE;
 }
 
-.complete {
-	color: lightgreen;
-}
-
+/******************** NAVIGATION MENU ********************/
 .active {
 	background-color: #00E676;
 }
 
 .rest {
 	background-color: #FF5252;
+}
+
+.rest .time, .active .time {
+	color: #f7fff7;
+}
+
+.rest button, .active button {
+	color: #f7fff7;
+}
+
+.complete {
+	color: lightgreen;
 }
 
 .info {
@@ -127,6 +137,71 @@ li {
   100% {
     opacity: 0;
   }
+}
+
+/******************** NAVIGATION MENU ********************/
+.menu {
+	position: fixed;
+	width: 50px;
+	height: 50px;
+	font-size: 30px;
+	text-align: center;
+	border-radius: 100%;
+	left: 50px;
+	top: 50px;
+	background-color: #2979FF;
+	transform: translate3d(-50%,-50%, 0);
+	transform-origin: center;
+	transition: .4s;
+}
+.menu.transform {
+	width: 300vw;
+	height: 300vw;
+}
+
+.menu-burger {
+	position: fixed;
+	width: 50px;
+	height: 50px;
+	font-size: 30px;
+	text-align: center;
+	border-radius: 100%;
+	left: 25px;
+	top: 25px;
+	color: #f7fff7;
+	padding-top: 4px;
+	cursor: pointer;
+	transition: .3s;
+  transform-origin: center;
+}
+
+.menu-items {
+	position: absolute;
+	width: 100%;
+	opacity: 0;
+	transition: .4s;
+	transform: translateY(-200%);
+}
+.menu-items.transform {
+	transform: translateY(0);
+	opacity: 1;
+	margin-top: 100px;
+}
+
+.menu-items div {
+	transition: 1s;
+	opacity: 0;
+	margin: 0 auto;
+	width: 80%;
+	font-weight: bold;
+	letter-spacing: 10px;
+	font-size: 30px;
+	color: black;
+	text-align: center;
+}
+.menu-items.transform div {
+	opacity: 1;
+	margin-top: 75px;
 }
 
 #app {

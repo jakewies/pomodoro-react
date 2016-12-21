@@ -3,6 +3,7 @@ export const _25 = 1500000;
 export const _05 = 300000;
 export const _test = 15000;
 
+
 export function handleOnKeyDown(e) {
 	if (e.key === " ") {
 		e.preventDefault();
@@ -17,4 +18,12 @@ export function handleOnSpaceDown() {
 	} else {
 		this.handleStartTimer();
 	}
+}
+
+export function handleMenuTransform() {
+	let menu  = document.querySelector('.menu'),
+			items = document.querySelector('.menu-items'),
+			transforms = [menu, items];
+
+	transforms.forEach( (el) => el.classList.toggle('transform') );
 }
