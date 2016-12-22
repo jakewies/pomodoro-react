@@ -4,7 +4,7 @@ import './css/styles.css';
 import Time from './js/components/Time';
 import Controls from './js/components/Controls';
 import Navigation from './js/components/Navigation';
-import { _25, _05, _test, handleOnKeyDown, handleOnSpaceDown } from './js/helpers';
+import { _25, _05, handleOnKeyDown, handleOnSpaceDown } from './js/helpers';
 import EventListener from 'react-event-listener';
 import Push from 'push.js';
 

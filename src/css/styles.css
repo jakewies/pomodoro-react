@@ -71,6 +71,17 @@ section {
 	margin: 50px auto 0;
 }
 
+footer {
+	padding: 40px 0;
+  width: 90%;
+  max-width: 500px;
+  border-top: 1px solid #f7fff7;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 75px auto 0;
+}
+
 button {
 	border: none;
 	background: transparent;
@@ -86,6 +97,18 @@ button {
 
 button:focus {
 	outline: none;
+}
+
+a {
+	font-size: 2rem;
+  text-decoration: none;
+  cursor: pointer;
+  width: 100px;
+	color: #f7fff7;
+}
+
+a:hover {
+	color: #ff5252;
 }
 
 .container {
