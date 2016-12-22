@@ -21,9 +21,10 @@ export function handleOnSpaceDown() {
 }
 
 export function handleMenuTransform() {
-	let menu  = document.querySelector('.menu'),
-			items = document.querySelector('.menu-items'),
-			transforms = [menu, items];
+	let menu   = document.querySelector('.menu'),
+			burger = document.querySelector('.menu-burger'),
+			items  = document.querySelector('.menu-items'),
+			transforms = [menu, burger, items];
 
 	transforms.forEach( (el) => el.classList.toggle('transform') );
 }

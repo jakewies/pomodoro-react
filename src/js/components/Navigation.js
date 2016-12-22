@@ -8,7 +8,9 @@ class Navigation extends React.Component {
 		return (
 			<navigation>
 				<div className='menu'></div>
-				<div className='menu-burger' onClick={handleMenuTransform}>☰</div>
+				<div className='menu-burger' onClick={handleMenuTransform}>
+					<span className='burger'></span>
+				</div>
 				<div className='menu-items'>
 					<header>
 						<img src={logo} alt="The Pomodoro" />
