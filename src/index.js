@@ -4,7 +4,8 @@ import './css/styles.css';
 import Time from './js/components/Time';
 import Controls from './js/components/Controls';
 import Navigation from './js/components/Navigation';
-import { _25, _05, handleOnKeyDown, handleOnSpaceDown } from './js/helpers';
+import Config from './js/components/Config';
+import { _25, _05, handleOnKeyDown, handleOnSpaceDown, minsToMilli } from './js/helpers';
 import EventListener from 'react-event-listener';
 import Push from 'push.js';
 
@@ -26,6 +27,7 @@ class Timer extends React.Component {
 		this.getTimeRemaining  = this.getTimeRemaining.bind(this);
 		this.nextPhase 				 = this.nextPhase.bind(this);
 		this.handlePushNotif   = this.handlePushNotif.bind(this);
+		this.handleEditTime    = this.handleEditTime.bind(this);
 		this.handleOnKeyDown   = handleOnKeyDown.bind(this);
 		this.handleOnSpaceDown = handleOnSpaceDown.bind(this);
 	}
@@ -113,12 +115,21 @@ class Timer extends React.Component {
 		});
 	}
 
+	handleEditTime(minutes) {
+		// convert time from minutes to milliseconds
+		let milli = minsToMilli(minutes);
+		this.setState({
+			timeRemaining: this.getTimeRemaining(milli)
+		})
+	}
+
 	render() {
 		return (
-			<div className={`container ${this.state.phase}`} >
+			<div className={`container ${this.state.phase}`}>
 				<Navigation />
 				<div className='timer'>
 					<Time time={this.state.timeRemaining} />
+					<Config handleEditTime={this.handleEditTime}/>
 					<Controls handleOnClickStart={this.handleStartTimer} handleOnClickStop={this.handleStopTimer}/>
 				</div>
 				<EventListener target={window} onKeyDown={this.handleOnKeyDown} />

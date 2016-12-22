@@ -94,7 +94,7 @@ button {
 	font-family: inherit;
 }
 
-button:focus {
+button:focus, input:focus {
 	outline: none;
 }
 
@@ -136,14 +136,16 @@ a:hover {
 	justify-content: space-between;
 }
 
-.phases {
-	list-style: none;
-	text-align: center;
-	padding: 0;
+.edit {
+	background: lightcoral;
+	width: 200px;
 }
 
-.phase {
-	color: #EEEEEE;
+input {
+	padding: 8px;
+	text-align: center;
+	width: inherit;
+
 }
 
 /******************** STATE ********************/
