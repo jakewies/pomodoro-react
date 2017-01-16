@@ -2,7 +2,7 @@
 
 # The Pomodoro
 
-A simple pomodoro timer built with ReactJS using. [See it in action](https://jake-wies.github.io/pomodoro-react/).
+A simple pomodoro timer built with ReactJS. [See it in action](https://jake-wies.github.io/pomodoro-react/).
 
 ## What is this?
 
