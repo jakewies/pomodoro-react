@@ -9,125 +9,137 @@ import EventListener from 'react-event-listener';
 import Push from 'push.js';
 
 class Timer extends React.Component {
-	constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
 
-		this.state = {
-			interval: null,
-		  step: 0,
-			phase: '',
-			timeRemaining: this.getTimeRemaining(_25)
-		}
+    this.state = {
+      interval: null,
+      step: 0,
+      phase: '',
+      timeRemaining: this.getTimeRemaining(65000)
+    };
 
-		this.handleStartTimer	 = this.handleStartTimer.bind(this);
-		this.handleStopTimer   = this.handleStopTimer.bind(this);
-		this.startTimer      	 = this.startTimer.bind(this);
-		this.displayTime       = this.displayTime.bind(this);
-		this.getTimeRemaining  = this.getTimeRemaining.bind(this);
-		this.nextPhase 				 = this.nextPhase.bind(this);
-		this.handlePushNotif   = this.handlePushNotif.bind(this);
-		this.handleOnKeyDown   = handleOnKeyDown.bind(this);
-		this.handleOnSpaceDown = handleOnSpaceDown.bind(this);
-	}
+    this.handleStartTimer = this.handleStartTimer.bind(this);
+    this.handleStopTimer = this.handleStopTimer.bind(this);
+    this.startTimer = this.startTimer.bind(this);
+    this.displayTime = this.displayTime.bind(this);
+    this.getTimeRemaining = this.getTimeRemaining.bind(this);
+    this.nextPhase = this.nextPhase.bind(this);
+    this.handlePushNotif = this.handlePushNotif.bind(this);
+    this.handleOnKeyDown = handleOnKeyDown.bind(this);
+    this.handleOnSpaceDown = handleOnSpaceDown.bind(this);
+  }
 
-	handleStartTimer() {
-		if (!this.state.interval) {
-			console.log('starting...');
+  handleStartTimer() {
+    if (!this.state.interval) {
+      // Update the class of the timer to add styles depending on which step it is on
+      this.setState({ phase: this.state.step % 2 === 0 ? 'active' : 'rest' });
 
-			/* Update the class of the timer to add styles depending on which step it is on */
-			this.setState({
-				phase: this.state.step % 2 === 0 ? 'active' : 'rest'
-			})
+      this.startTimer();
+    }
+  }
 
-			this.startTimer();
-		}
-	}
+  handleStopTimer() {
+    if (this.state.interval) {
+      console.log('stopping...');
 
-	handleStopTimer() {
-		if (this.state.interval) {
-			console.log('stopping...');
+      clearInterval(this.state.interval);
+      this.setState({ interval: null, phase: '' });
+    }
+  }
 
-			clearInterval(this.state.interval);
-			this.setState({ interval: null, phase: '' });
-		}
-	}
+  startTimer() {
+    this.displayTime();
+    // display initial time without delay
+    this.setState({
+      // run every second
+      interval: setInterval(this.displayTime, 1000)
+    });
+  }
 
-	startTimer() {
-		this.displayTime(); // display initial time without delay
-		this.setState({
-			interval: setInterval(this.displayTime, 1000) // run every second
-		});
-	}
+  displayTime() {
+    if (this.state.timeRemaining.total > 0) {
+      // get & set time remaining every 1 second
+      let timeRemaining = this.getTimeRemaining(
+        this.state.timeRemaining.total - 1000
+      );
+      this.setState({ timeRemaining });
 
-	displayTime() {
-		if (this.state.timeRemaining.total > 0) {
-			console.log('inside displayTime');
-			/* get & set time remaining every 1 second */
-			let timeRemaining = this.getTimeRemaining(this.state.timeRemaining.total - 1000);
-			this.setState({ timeRemaining });
+      // display notif if there is 1 minute left
+      if (timeRemaining.total === 60000) {
+        let string = `1 minute of ${this.state.phase === 'active'
+          ? 'work'
+          : 'rest'} remaining!`;
+        this.handlePushNotif(string);
+      }
+    } else {
+      // move to next phase
+      this.nextPhase();
+    }
+  }
 
-			/* display notif if there is 1 minute left */
-			if (timeRemaining.total === 60000) {
-				let string = `1 minute of ${this.state.phase === "active" ? 'work' : 'rest'} remaining!`;
-				this.handlePushNotif(string);
-			}
-		}
-		else {
-			this.nextPhase(); // move to next phase
-		}
+  getTimeRemaining(timeInMilliSecs) {
+    // return a string value of the time remaining
+    const total = timeInMilliSecs,
+      minutes = Math.floor(total / 1000 / 60 % 60),
+      seconds = Math.floor(total / 1000 % 60) < 10
+        ? '0' + Math.floor(total / 1000 % 60)
+        : Math.floor(total / 1000 % 60);
 
-	}
+    return { total, minutes, seconds };
+  }
 
-	getTimeRemaining(timeInMilliSecs) {
-		// return a string value of the time remaining
-		const total = timeInMilliSecs,
-					minutes = Math.floor( (total/1000/60) % 60 ),
-					seconds = Math.floor( (total/1000) % 60) < 10 ? '0' + Math.floor( (total/1000) % 60 ) : Math.floor( (total/1000) % 60 );
+  nextPhase() {
+    console.log('switching to next phase...');
 
-		return { total, minutes, seconds };
-	}
+    // alert user
+    let string = `Time's Up! ${this.state.phase === 'active'
+      ? 'Getchu some rest!'
+      : 'Ready to get to work?'}`;
+    this.handlePushNotif(string);
 
-	nextPhase() {
-		console.log('switching to next phase...');
+    this.handleStopTimer();
+    let step = this.state.step + 1;
 
-		/* alert user */
-		let string = `Time's Up! ${this.state.phase === "active" ? 'Getchu some rest!' : 'Ready to get to work?'}`;
-		this.handlePushNotif(string);
+    this.setState({
+      step,
+      timeRemaining: step % 2 === 0
+        ? this.getTimeRemaining(_25)
+        : this.getTimeRemaining(_05)
+    });
+  }
 
-		this.handleStopTimer();
-		let step = this.state.step + 1;
+  handlePushNotif(string) {
+    Push.create('The Pomodoro', {
+      body: string,
+      icon: { x32: './favicon.ico' },
+      timeout: 5000
+    });
+  }
 
-		this.setState({
-			step,
-			timeRemaining: step % 2 === 0 ? this.getTimeRemaining(_25) : this.getTimeRemaining(_05)
-		});
-	}
+  componentDidMount() {
+    // get Permission from user to display browser notifications
+    if (!('Notification' in window)) {
+      return console.log('This browser does not support desktop notification');
+    }
+    Push.Permission.request();
+  }
 
-	handlePushNotif(string) {
-		Push.create('The Pomodoro', {
-			body: string,
-			icon: {
-        x32: './favicon.ico'
-    	},
-			timeout: 5000
-		});
-	}
-
-	render() {
-		return (
-			<div className={`container ${this.state.phase}`} >
-				<Navigation />
-				<div className='timer'>
-					<Time time={this.state.timeRemaining} />
-					<Controls handleOnClickStart={this.handleStartTimer} handleOnClickStop={this.handleStopTimer}/>
-				</div>
-				<EventListener target={window} onKeyDown={this.handleOnKeyDown} />
-			</div>
-		)
-	}
+  render() {
+    return (
+      <div className={`container ${this.state.phase}`}>
+        <Navigation />
+        <div className="timer">
+          <Time time={this.state.timeRemaining} />
+          <Controls
+            handleOnClickStart={this.handleStartTimer}
+            handleOnClickStop={this.handleStopTimer}
+          />
+        </div>
+        <EventListener target={window} onKeyDown={this.handleOnKeyDown} />
+      </div>
+    );
+  }
 }
 
-ReactDOM.render(
-  <Timer />,
-  document.getElementById('app')
-);
+ReactDOM.render(<Timer />, document.getElementById('app'));
